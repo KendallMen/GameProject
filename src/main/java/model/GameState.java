@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * DTO de lectura del estado de juego para la vista.
+ */
 public class GameState {
 
     private Board board;

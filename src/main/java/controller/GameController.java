@@ -6,6 +6,7 @@ import model.PieceColor;
 import model.Player;
 import repository.GameRepository;
 
+
 public class GameController {
 
     private final GameRepository gameRepository;
@@ -25,6 +26,11 @@ public class GameController {
         return ControllerResult.SUCCESS;
     }
 
+    /**
+     * Llena un objeto GameState con el estado actual.
+     * @param out contenedor de salida
+     * @return resultado de la operación
+     */
     public ControllerResult readState(GameState out) {
 
         if (out == null) {
@@ -65,7 +71,6 @@ public class GameController {
         if (currentGame == null) return ControllerResult.NO_ACTIVE_GAME;
         if (currentGame.juegoTerminado()) return ControllerResult.GAME_OVER;
 
-        // Detecta TURN_SKIPPED comparando turno antes y después
         PieceColor turnBefore = currentGame.getTurno();
 
         boolean ok = currentGame.jugar(row, col);
@@ -126,7 +131,6 @@ public class GameController {
         }
     }
 
-    // ✅ acceso simple a la partida actual
     public Game getCurrentGame() {
         return currentGame;
     }

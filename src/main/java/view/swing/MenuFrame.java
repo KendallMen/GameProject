@@ -8,11 +8,17 @@ import model.Player;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class MenuFrame extends JFrame {
 
     private final GameController gameController;
     private final PlayerController playerController;
 
+    /**
+     * Muestra el menu en el EDT.
+     * @param gameController controlador de partida
+     * @param playerController controlador de jugadores
+     */
     public static void show(GameController gameController, PlayerController playerController) {
         SwingUtilities.invokeLater(() -> new MenuFrame(gameController, playerController).setVisible(true));
     }
@@ -139,7 +145,6 @@ public class MenuFrame extends JFrame {
             Player found = playerController.getPlayer(name);
             if (found != null) return found;
 
-            // si no existe, ofrecer registrar
             int r = JOptionPane.showConfirmDialog(this,
                     "No existe el jugador \"" + name + "\". ¿Deseas registrarlo?",
                     "Registrar", JOptionPane.YES_NO_OPTION);

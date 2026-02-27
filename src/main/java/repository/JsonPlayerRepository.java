@@ -22,6 +22,10 @@ public class JsonPlayerRepository implements PlayerRepository {
     private static class PlayerDTO { String name; int wins; int losses; }
     private static class PlayersDTO { List<PlayerDTO> players = new ArrayList<>(); }
 
+    /**
+     * Crea el repositorio y carga el archivo si existe.
+     * @param file ruta al archivo JSON
+     */
     public JsonPlayerRepository(Path file) {
         this.file = Objects.requireNonNull(file, "file");
         try { if (file.getParent() != null) Files.createDirectories(file.getParent()); } catch (IOException ignored) {}
@@ -70,6 +74,11 @@ public class JsonPlayerRepository implements PlayerRepository {
         save();
     }
 
+    /**
+     * Busca un jugador por nombre.
+     * @param nombre nombre del jugador
+     * @return jugador o null
+     */
     @Override
     public Player buscarPorNombre(String nombre) {
         if (nombre == null) return null;
@@ -108,6 +117,10 @@ public class JsonPlayerRepository implements PlayerRepository {
         save();
     }
 
+    /**
+     * Elimina un jugador por nombre.
+     * @param nombre nombre del jugador
+     */
     @Override
     public void eliminar(String nombre) {
         if (nombre == null || nombre.isBlank()) {

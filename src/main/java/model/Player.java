@@ -1,8 +1,6 @@
 package model;
 
-/**
- * Representa un jugador del dominio.
- */
+
 public class Player {
     private final String nombre;
     private int ganadas;
@@ -34,4 +32,3 @@ public class Player {
         perdidas++;
     }
 }
-

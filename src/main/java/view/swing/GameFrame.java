@@ -12,6 +12,7 @@ import java.awt.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+
 public class GameFrame extends JFrame {
 
     private final GameController gameController;
@@ -24,6 +25,12 @@ public class GameFrame extends JFrame {
     private final JLabel lblTurn = new JLabel("Turno: ");
     private final JLabel lblScore = new JLabel("Marcador: ");
 
+    /**
+     * Muestra la ventana de juego en el EDT.
+     * @param gameController controlador de partida
+     * @param playerController controlador de jugadores
+     * @param menuToReturn menú al que se regresa al salir
+     */
     public static void show(GameController gameController, PlayerController playerController, JFrame menuToReturn) {
         SwingUtilities.invokeLater(() -> new GameFrame(gameController, playerController, menuToReturn).setVisible(true));
     }

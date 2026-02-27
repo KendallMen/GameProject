@@ -29,6 +29,10 @@ public class JsonGameRepository implements GameRepository {
     private final Path baseDir;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    /**
+     * Crea el repositorio con un directorio base para guardados.
+     * @param baseDir directorio base
+     */
     public JsonGameRepository(Path baseDir) {
         this.baseDir = Objects.requireNonNull(baseDir, "baseDir");
         try { Files.createDirectories(baseDir); } catch (IOException ignored) {}
@@ -57,6 +61,11 @@ public class JsonGameRepository implements GameRepository {
     }
     private static class PlayerDTO { String name; }
 
+    /**
+     * Guarda una partida en formato JSON.
+     * @param id identificador o ruta
+     * @param partida partida a guardar
+     */
     @Override
     public void guardar(String id, Game partida) {
         if (id == null || id.isBlank() || partida == null) throw new IllegalArgumentException();
@@ -83,6 +92,11 @@ public class JsonGameRepository implements GameRepository {
         }
     }
 
+    /**
+     * Carga una partida desde JSON.
+     * @param id identificador o ruta
+     * @return partida cargada o null si no existe
+     */
     @Override
     public Game buscarPorId(String id) {
         if (id == null || id.isBlank()) return null;
@@ -100,7 +114,6 @@ public class JsonGameRepository implements GameRepository {
 
             Game game = new Game(dto.size, black, white);
 
-            // Turno: el constructor inicia BLACK.
             if (dto.turn == PieceColor.WHITE) {
                 game.cambiarTurno();
             }
@@ -118,6 +131,10 @@ public class JsonGameRepository implements GameRepository {
 
     @Override public Game[] obtenerTodas() { return new Game[0]; }
 
+    /**
+     * Elimina un archivo de partida.
+     * @param id identificador o ruta
+     */
     @Override
     public void eliminar(String id) {
         try { Files.deleteIfExists(resolve(id)); }

@@ -1,8 +1,5 @@
 package model;
 
-/**
- * Representa el tablero N x N y operaciones propias del tablero.
- */
 public class Board {
 
     private PieceColor[][] tablero;
@@ -11,6 +8,10 @@ public class Board {
     private final int[] dfila = {-1,-1,-1, 0, 0, 1, 1, 1};
     private final int[] dcol  = {-1, 0, 1,-1, 1,-1, 0, 1};
 
+    /**
+     * Crea un tablero con tamaño N x N e inicializa las fichas centrales.
+     * @param n tamaño del tablero (par y >= 4)
+     */
     public Board(int n) {
         if (n < 4 || n % 2 != 0) {
             throw new IllegalArgumentException("El tamaño debe ser par y >= 4");
@@ -66,6 +67,13 @@ public class Board {
         return true;
     }
 
+    /**
+     * Indica si una jugada es válida para el color dado.
+     * @param fila fila destino
+     * @param col columna destino
+     * @param color color del jugador
+     * @return true si encierra fichas del oponente
+     */
     public boolean movValido(int fila, int col, PieceColor color) {
 
         if (!posicionValida(fila, col)) return false;
@@ -156,11 +164,6 @@ public class Board {
         return false;
     }
 
-    // =========================
-    //  NUEVO: soporte JSON (snapshot)
-    // =========================
-
-    /** Devuelve una copia del tablero para persistencia (sin aliasing). */
     public PieceColor[][] copiarEstado() {
         PieceColor[][] copy = new PieceColor[tamano][tamano];
         for (int f = 0; f < tamano; f++) {
@@ -169,7 +172,6 @@ public class Board {
         return copy;
     }
 
-    /** Carga un estado persistido (si es inválido, lanza excepción). */
     public void cargarEstado(PieceColor[][] estado) {
         if (estado == null || estado.length != tamano || estado[0].length != tamano) {
             throw new IllegalArgumentException("Estado inválido para el tamaño del tablero");

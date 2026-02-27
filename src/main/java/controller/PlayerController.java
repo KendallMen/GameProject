@@ -17,7 +17,6 @@ public class PlayerController {
         this.playerRepository = Objects.requireNonNull(playerRepository, "playerRepository");
     }
 
-
     public Player registerPlayer(String name) {
         if (name == null) return null;
         name = name.trim();
@@ -28,7 +27,6 @@ public class PlayerController {
         playerRepository.agregar(created);
         return created;
     }
-
 
     public Player getPlayer(String name) {
         if (name == null) return null;

@@ -1,5 +1,6 @@
 package model;
 
+
 public class Game {
 
     private final Board tablero;
@@ -33,6 +34,12 @@ public class Game {
         turno = turno.opposite();
     }
 
+    /**
+     * Intenta jugar en la coordenada indicada y aplica volteos.
+     * @param fila fila destino
+     * @param col columna destino
+     * @return true si la jugada fue válida
+     */
     public boolean jugar(int fila, int col) {
         boolean exito = tablero.ponerFicha(fila, col, turno);
 
@@ -65,6 +72,7 @@ public class Game {
     public int contarBlancas() {
         return tablero.contarFichas(PieceColor.WHITE); }
 
+
     public String resultadoFinal() {
         int negras = contarNegras();
         int blancas = contarBlancas();
@@ -74,4 +82,3 @@ public class Game {
         return "EMPATE";
     }
 }
-

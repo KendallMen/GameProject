@@ -2,6 +2,9 @@ package repository;
 
 import model.Player;
 
+/**
+ * Contrato de persistencia para jugadores.
+ */
 public interface PlayerRepository {
 
     void agregar(Player jugador);
