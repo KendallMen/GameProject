@@ -17,8 +17,7 @@ public class PlayerController {
         this.playerRepository = Objects.requireNonNull(playerRepository, "playerRepository");
     }
 
-    // ✅ Antes: registerPlayer(name, PlayerRef out)
-    // Ahora: retorna el Player creado o null si no se pudo
+
     public Player registerPlayer(String name) {
         if (name == null) return null;
         name = name.trim();
@@ -30,8 +29,7 @@ public class PlayerController {
         return created;
     }
 
-    // ✅ Antes: getPlayer(name, PlayerRef out)
-    // Ahora: retorna Player o null
+
     public Player getPlayer(String name) {
         if (name == null) return null;
         name = name.trim();
@@ -40,8 +38,6 @@ public class PlayerController {
         return playerRepository.buscarPorNombre(name);
     }
 
-    // ✅ Antes: listPlayers(PlayersState out)
-    // Ahora: retorna arreglo directo
     public Player[] listPlayers() {
         Player[] all = playerRepository.obtenerTodos();
         return (all == null) ? new Player[0] : all;
