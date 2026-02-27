@@ -1,0 +1,92 @@
+{
+  "size": 8,
+  "turn": "WHITE",
+  "black": {
+    "name": "luis"
+  },
+  "white": {
+    "name": "pedro"
+  },
+  "board": [
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "WHITE",
+      "EMPTY",
+      "EMPTY",
+      "BLACK",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "WHITE",
+      "WHITE",
+      "BLACK",
+      "BLACK",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "WHITE",
+      "WHITE",
+      "BLACK",
+      "BLACK",
+      "BLACK",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "WHITE",
+      "BLACK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ]
+  ]
+}
