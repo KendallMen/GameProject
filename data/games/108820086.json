@@ -2,10 +2,10 @@
   "size": 8,
   "turn": "BLACK",
   "black": {
-    "name": "isaac"
+    "name": "luis"
   },
   "white": {
-    "name": "pepe"
+    "name": "pedro"
   },
   "board": [
     [
@@ -63,8 +63,8 @@
       "EMPTY",
       "EMPTY",
       "EMPTY",
-      "BLACK",
-      "WHITE",
+      "EMPTY",
+      "EMPTY",
       "EMPTY",
       "EMPTY"
     ],

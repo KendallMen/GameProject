@@ -63,11 +63,18 @@ public class GameController {
     public ControllerResult move(int row, int col) {
 
         if (currentGame == null) return ControllerResult.NO_ACTIVE_GAME;
+        if (currentGame.juegoTerminado()) return ControllerResult.GAME_OVER;
+
+        // Detecta TURN_SKIPPED comparando turno antes y después
+        PieceColor turnBefore = currentGame.getTurno();
 
         boolean ok = currentGame.jugar(row, col);
         if (!ok) return ControllerResult.INVALID_MOVE;
 
         if (currentGame.juegoTerminado()) return ControllerResult.GAME_OVER;
+
+        PieceColor turnAfter = currentGame.getTurno();
+        if (turnAfter == turnBefore) return ControllerResult.TURN_SKIPPED;
 
         return ControllerResult.SUCCESS;
     }
@@ -75,16 +82,20 @@ public class GameController {
     public ControllerResult passTurn() {
 
         if (currentGame == null) return ControllerResult.NO_ACTIVE_GAME;
+        if (currentGame.juegoTerminado()) return ControllerResult.GAME_OVER;
 
-        PieceColor turn = currentGame.getTurno();
+        PieceColor turnBefore = currentGame.getTurno();
 
-        if (currentGame.getTablero().hayMovimientos(turn)) {
+        if (currentGame.getTablero().hayMovimientos(turnBefore)) {
             return ControllerResult.PASS_NOT_ALLOWED;
         }
 
         currentGame.pasarTurno();
 
         if (currentGame.juegoTerminado()) return ControllerResult.GAME_OVER;
+
+        PieceColor turnAfter = currentGame.getTurno();
+        if (turnAfter == turnBefore) return ControllerResult.TURN_SKIPPED;
 
         return ControllerResult.SUCCESS;
     }
@@ -93,21 +104,29 @@ public class GameController {
         if (currentGame == null) return ControllerResult.NO_ACTIVE_GAME;
         if (id == null || id.isBlank()) return ControllerResult.INVALID_INPUT;
 
-        gameRepository.guardar(id, currentGame);
-        return ControllerResult.SUCCESS;
+        try {
+            gameRepository.guardar(id, currentGame);
+            return ControllerResult.SUCCESS;
+        } catch (RuntimeException ex) {
+            return ControllerResult.PERSISTENCE_ERROR;
+        }
     }
 
     public ControllerResult loadGame(String id) {
         if (id == null || id.isBlank()) return ControllerResult.INVALID_INPUT;
 
-        Game g = gameRepository.buscarPorId(id);
-        if (g == null) return ControllerResult.LOAD_NOT_FOUND;
+        try {
+            Game g = gameRepository.buscarPorId(id);
+            if (g == null) return ControllerResult.LOAD_NOT_FOUND;
 
-        currentGame = g;
-        return ControllerResult.SUCCESS;
+            currentGame = g;
+            return ControllerResult.SUCCESS;
+        } catch (RuntimeException ex) {
+            return ControllerResult.PERSISTENCE_ERROR;
+        }
     }
 
-    // ✅ NUEVO: acceso simple a la partida actual (sin GameRef)
+    // ✅ acceso simple a la partida actual
     public Game getCurrentGame() {
         return currentGame;
     }

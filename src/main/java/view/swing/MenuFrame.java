@@ -78,8 +78,13 @@ public class MenuFrame extends JFrame {
         if (id == null) return;
 
         ControllerResult res = gameController.loadGame(id);
+
         if (res == ControllerResult.LOAD_NOT_FOUND) {
             JOptionPane.showMessageDialog(this, "No existe una partida con ese ID.");
+            return;
+        }
+        if (res == ControllerResult.PERSISTENCE_ERROR) {
+            JOptionPane.showMessageDialog(this, "Error al cargar (archivo dañado, ruta inválida o permisos).");
             return;
         }
         if (res != ControllerResult.SUCCESS) {

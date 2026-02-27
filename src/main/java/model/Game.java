@@ -20,10 +20,14 @@ public class Game {
         this.turno = PieceColor.BLACK; // siempre inicia negro
     }
 
-    public Board getTablero() { return tablero; }
-    public Player getJugadorNegro() { return jugadorNegro; }
-    public Player getJugadorBlanco() { return jugadorBlanco; }
-    public PieceColor getTurno() { return turno; }
+    public Board getTablero() {
+        return tablero; }
+    public Player getJugadorNegro() {
+        return jugadorNegro; }
+    public Player getJugadorBlanco() {
+        return jugadorBlanco; }
+    public PieceColor getTurno() {
+        return turno; }
 
     public void cambiarTurno() {
         turno = turno.opposite();
@@ -56,8 +60,10 @@ public class Game {
         return false;
     }
 
-    public int contarNegras() { return tablero.contarFichas(PieceColor.BLACK); }
-    public int contarBlancas() { return tablero.contarFichas(PieceColor.WHITE); }
+    public int contarNegras() {
+        return tablero.contarFichas(PieceColor.BLACK); }
+    public int contarBlancas() {
+        return tablero.contarFichas(PieceColor.WHITE); }
 
     public String resultadoFinal() {
         int negras = contarNegras();

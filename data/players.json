@@ -19,6 +19,21 @@
       "name": "pepe",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "name": "Alonso",
+      "wins": 0,
+      "losses": 0
+    },
+    {
+      "name": "fox",
+      "wins": 0,
+      "losses": 1
+    },
+    {
+      "name": "arturito",
+      "wins": 1,
+      "losses": 0
     }
   ]
 }

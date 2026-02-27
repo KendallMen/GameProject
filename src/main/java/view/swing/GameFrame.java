@@ -120,7 +120,6 @@ public class GameFrame extends JFrame {
             for (int j = 0; j < n; j++) {
                 PieceColor color = state.getBoard().ficha(i, j);
 
-                // Render austero: solo color, sin letras.
                 cells[i][j].setText("");
 
                 if (color == PieceColor.BLACK) {
@@ -155,7 +154,7 @@ public class GameFrame extends JFrame {
         } else if (r == ControllerResult.TURN_SKIPPED) {
             JOptionPane.showMessageDialog(this, "El turno del oponente fue saltado (no tenía movimientos).");
         } else if (r == ControllerResult.GAME_OVER) {
-            refreshUI(); // esto dispara onGameOver()
+            refreshUI();
             return;
         } else if (r != ControllerResult.SUCCESS) {
             JOptionPane.showMessageDialog(this, "No se pudo realizar el movimiento.");
@@ -211,7 +210,6 @@ public class GameFrame extends JFrame {
             return;
         }
 
-        // Confirmar sobrescritura (simple)
         Path defaultDir = Path.of("data").resolve("games");
         Path fileGuess = (id.contains("/") || id.contains("\\") || Path.of(id).isAbsolute())
                 ? ensureJson(Path.of(id))
@@ -230,6 +228,8 @@ public class GameFrame extends JFrame {
         ControllerResult r = gameController.saveGame(id);
         if (r == ControllerResult.SUCCESS) {
             JOptionPane.showMessageDialog(this, "Partida guardada.");
+        } else if (r == ControllerResult.PERSISTENCE_ERROR) {
+            JOptionPane.showMessageDialog(this, "Error al guardar (ruta inválida, permisos o problema de archivos).");
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo guardar.");
         }
@@ -251,7 +251,6 @@ public class GameFrame extends JFrame {
     }
 
     private void onGameOver(String resultText) {
-        // Actualizar stats si se puede
         try {
             if (gameController.getCurrentGame() != null) {
                 playerController.updateStats(gameController.getCurrentGame());

@@ -12,5 +12,6 @@ public enum ControllerResult {
     GAME_OVER,
     NO_ACTIVE_GAME,
     LOAD_NOT_FOUND,
-    NOT_FOUND
+    NOT_FOUND,
+    PERSISTENCE_ERROR
 }

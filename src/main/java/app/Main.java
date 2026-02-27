@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Directorio base para guardar partidas
-        Path dataDir = Path.of("data");
+        Path dataDir = Path.of("data.txt");
         GameRepository gameRepository = new JsonGameRepository(dataDir.resolve("games"));
         PlayerRepository playerRepository = new JsonPlayerRepository(dataDir.resolve("players.json"));
         GameController controller = new GameController(gameRepository);
